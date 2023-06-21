@@ -7,7 +7,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseManager databaseManager = new DatabaseManager();
+        String databaseFilePath = "path/to/database.txt";
+        DatabaseManager databaseManager = new DatabaseManager(databaseFilePath);
 
         // Dodawanie budynków do bazy danych
         Building building1 = new Building("Main Street", "123", 5, true);
@@ -21,7 +22,7 @@ public class Main {
         for (Building building : allBuildings) {
             System.out.println("Street: " + building.getStreet());
             System.out.println("Address: " + building.getAddress());
-            System.out.println("Floors: " + building.getFloors());
+            System.out.println("Floors: " + building.getNumberOfFloors());
             System.out.println("Has basement: " + building.hasBasement());
             System.out.println();
         }
@@ -32,7 +33,7 @@ public class Main {
         for (Building building : matchedBuildings) {
             System.out.println("Street: " + building.getStreet());
             System.out.println("Address: " + building.getAddress());
-            System.out.println("Floors: " + building.getFloors());
+            System.out.println("Floors: " + building.getNumberOfFloors());
             System.out.println("Has basement: " + building.hasBasement());
             System.out.println();
         }
