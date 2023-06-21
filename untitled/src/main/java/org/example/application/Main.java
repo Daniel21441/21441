@@ -1,19 +1,40 @@
 package org.example.application;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.example.database.Building;
+import org.example.database.DatabaseManager;
+
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        DatabaseManager databaseManager = new DatabaseManager();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Dodawanie budynków do bazy danych
+        Building building1 = new Building("Main Street", "123", 5, true);
+        Building building2 = new Building("Park Avenue", "456", 10, false);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        databaseManager.saveBuilding(building1);
+        databaseManager.saveBuilding(building2);
+
+        // Odczytywanie wszystkich budynków z bazy danych
+        List<Building> allBuildings = databaseManager.getAllBuildings();
+        for (Building building : allBuildings) {
+            System.out.println("Street: " + building.getStreet());
+            System.out.println("Address: " + building.getAddress());
+            System.out.println("Floors: " + building.getFloors());
+            System.out.println("Has basement: " + building.hasBasement());
+            System.out.println();
+        }
+
+        // Wyszukiwanie budynków na podstawie słowa kluczowego
+        String keyword = "Main";
+        List<Building> matchedBuildings = databaseManager.searchBuildings(keyword);
+        for (Building building : matchedBuildings) {
+            System.out.println("Street: " + building.getStreet());
+            System.out.println("Address: " + building.getAddress());
+            System.out.println("Floors: " + building.getFloors());
+            System.out.println("Has basement: " + building.hasBasement());
+            System.out.println();
         }
     }
 }
