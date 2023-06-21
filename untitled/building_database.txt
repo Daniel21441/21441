@@ -1,6 +1,6 @@
+Street 1,123,5,true
+Street 2,456,10,false
+Test Street,789,3,true
 Main Street,123,5,true
 Park Avenue,456,10,false
-Main Street,123,5,true
-Park Avenue,456,10,false
-Main Street,123,5,true
-Park Avenue,456,10,false
+Main Road,789,8,true
