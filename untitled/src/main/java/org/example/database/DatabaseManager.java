@@ -1,17 +1,31 @@
 package org.example.database;
+
 import org.example.database.Building;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa DatabaseManager zarządza bazą danych budynków.
+ */
 public class DatabaseManager {
     private String databaseFile;
 
+    /**
+     * Konstruktor inicjalizuje obiekt DatabaseManager z ścieżką do pliku bazy danych.
+     *
+     * @param databaseFile ścieżka do pliku bazy danych
+     */
     public DatabaseManager(String databaseFile) {
         this.databaseFile = databaseFile;
     }
 
+    /**
+     * Metoda saveBuilding zapisuje informacje o budynku do bazy danych.
+     *
+     * @param building obiekt reprezentujący budynek do zapisania
+     */
     public void saveBuilding(Building building) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(databaseFile, true))) {
             String buildingData = building.getStreet() + "," +
@@ -25,6 +39,11 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * Metoda getAllBuildings zwraca listę wszystkich budynków z bazy danych.
+     *
+     * @return lista budynków
+     */
     public List<Building> getAllBuildings() {
         List<Building> buildings = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(databaseFile))) {
@@ -44,6 +63,12 @@ public class DatabaseManager {
         return buildings;
     }
 
+    /**
+     * Metoda searchBuildings wyszukuje budynków na podstawie podanego słowa kluczowego.
+     *
+     * @param keyword słowo kluczowe do wyszukania
+     * @return lista budynków spełniających kryteria wyszukiwania
+     */
     public List<Building> searchBuildings(String keyword) {
         List<Building> matchedBuildings = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(databaseFile))) {
